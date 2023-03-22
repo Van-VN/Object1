@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="drawTemplate" width="720px" height="480px"></canvas>
+</body>
+</html>
+<script>
+// Tạo Class Circle
+    class Circle {
+        x;
+        y;
+        radius;
+        constructor(x, y, rad) {
+            this.x = x;
+            this.y = y;
+            this.radius = rad;
+        }
+    }
+// Tạo màu với Hex random
+    function randomColor() {
+        function randomHex() {
+            return Math.floor(Math.random() * 255);
+        }
+
+        let red = randomHex();
+        let green = randomHex();
+        let blue = randomHex();
+        return (`rgb(${red},${green},${blue})`);
+    }
+// Vẽ 1 hình tròn random
+    function drawACircle() {
+        let c = document.getElementById("drawTemplate").getContext("2d");
+        let randomRadius = Math.floor(Math.random() * 80)
+        let randomX = Math.random() * 720;
+        let randomY = Math.random() * 480;
+        let circle = new Circle(randomX, randomY, randomRadius);
+        c.beginPath();
+        c.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        c.fillStyle = randomColor();
+        c.fill();
+    }
+// Loop để vẽ nhiều hình tròn random
+    function drawRandomCircle() {
+        for (let i = 0; i < 100; i++) {
+            drawACircle();
+        }
+    }
+
+    drawRandomCircle();
+</script>
