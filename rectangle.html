@@ -13,13 +13,17 @@
 </html>
 <script>
     class Rectangle {
+        x;
+        y;
         length;
         width;
 
-        constructor(len, wid) {
+        constructor(x, y, wid, len) {
             if (isNaN(len) || isNaN(wid) || len < 0 || wid < 0) {
                 alert('Nhập dữ liệu sai')
             } else {
+                this.x = x;
+                this.y = y;
                 this.length = len;
                 this.width = wid;
             }
@@ -35,16 +39,22 @@
 
         drawRect() {
             let canvas = document.getElementById("displayArea").getContext('2d');
-            canvas.moveTo(0,0);
-            canvas.lineTo(0,this.length);
-            canvas.lineTo(this.width, this.length);
-            canvas.lineTo(this.width,0);
-            canvas.lineTo(0,0);
+            canvas.moveTo(this.x, this.y);
+            canvas.lineTo(this.length + this.x, this.y);
+            canvas.lineTo(this.length + this.x, this.width + this.y);
+            canvas.lineTo(this.x, this.width + this.y);
+            canvas.lineTo(this.x, this.y);
             canvas.stroke();
+            canvas.fill();
+            canvas.closePath();
         }
     }
 
 
-    let newRect = new Rectangle(100,300);
+    let newRect = new Rectangle(10, 10, 100, 300);
+    let newRect1 = new Rectangle(400, 400, 300, 50);
+    let newRect2 = new Rectangle(400, 40, 300, 300);
     newRect.drawRect();
+    newRect1.drawRect();
+    newRect2.drawRect();
 </script>
