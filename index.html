@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script>
+    class Date {
+        day;
+        month;
+        year;
+
+        constructor(day, month, year) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
+
+        getDay() {
+            return this.day;
+        }
+
+        getMonth() {
+            return this.month;
+        }
+
+        getYear() {
+            return this.year;
+        }
+
+        setDay(newDay) {
+            this.day = newDay;
+        }
+
+        setMonth(newMonth) {
+            this.month = newMonth;
+        }
+
+        setYear(newYear) {
+            this.year = newYear;
+        }
+
+        setDate(newDay, newMonth, newYear) {
+            this.day = newDay;
+            this.month = newMonth;
+            this.year = newYear;
+        }
+
+        alertDate() {
+            if (this.day < 10 && this.month < 10) {
+                alert(`0${this.day}/0${this.month}/${this.year}`);
+            } else if (this.month < 10) {
+                alert(`${this.day}/0${this.month}/${this.year}`);
+            } else if (this.day < 10) {
+                alert(`0${this.day}/${this.month}/${this.year}`);
+            }
+        }
+    }
+
+    let Date1 = new Date(12, 1, 2023);
+    Date1.setMonth(3);
+    Date1.setDay(22);
+    Date1.setDate(1, 1, 2024);
+    Date1.alertDate();
+</script>
