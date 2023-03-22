@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  class Circle {
+    radius;
+    color = 'Red';
+    constructor(radius) {
+      if (isNaN(radius)) {
+        alert('Nhập sai dữ liệu');
+      } else {
+        this.radius = radius;
+      }
+    }
+    getRadius() {
+      return this.radius;
+    }
+    getArea() {
+      return this.radius**2*Math.PI;
+    }
+  }
+
+  let circle1 = new Circle(10);
+  console.log(circle1, circle1.getArea(), circle1.getRadius());
+  let circle2 = new Circle(2);
+  console.log(circle2, circle2.getArea(), circle2.getRadius());
+
+</script>
