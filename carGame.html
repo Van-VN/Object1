@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="start()">
+<img id="topDownCar" src="transparentCar.png" alt="Transparent Car From Top Down"
+     style="position: absolute; left: 50%; top: 50%; width: 50px">
+<canvas id="carGame" width="1000px" height="800px" style="border: 1px solid red">
+
+</canvas>
+</body>
+</html>
+<script>
+    function upArrow() {
+        let element = document.getElementById("topDownCar");
+        element.style.top = parseInt(element.style.top) - 5 + "px";
+    }
+
+    function downArrow() {
+        let element = document.getElementById("topDownCar");
+        element.style.top = parseInt(element.style.top) + 5 + "px";
+    }
+
+    function leftArrow() {
+        let element = document.getElementById("topDownCar");
+        element.style.left = parseInt(element.style.left) - 5 + "px";
+    }
+
+    function rightArrow() {
+        let element = document.getElementById("topDownCar");
+        element.style.left = parseInt(element.style.left) + 5 + "px";
+    }
+
+    function moveSelection(event) {
+        switch (event.keyCode) {
+            case 38:
+                upArrow();
+                break;
+            case 40:
+                downArrow();
+                break;
+            case 37:
+                leftArrow();
+                break;
+            case 39:
+                rightArrow();
+                break;
+        }
+    }
+
+    function start() {
+        window.addEventListener('keydown', moveSelection);
+    }
+</script>

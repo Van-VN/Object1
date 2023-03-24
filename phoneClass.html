@@ -13,58 +13,56 @@
 </html>
 <script>
     class Phone {
-        onOff;
-        phoneName;
-        battPercentage;
-        unsendMessage;
-        inbox = [];
-        outbox = [];
+        name;
 
-        constructor(name, battery, message, onOff) {
-            this.phoneName = name;
-            if (isNaN(battery) || battery < 0 || battery > 100) {
-                alert('Nhập sai dữ liệu pin');
+        constructor(name) {
+            this.name = name;
+            this.battery = 100;
+            this.status = false;
+            this.message = '';
+            this.inbox = [];
+            this.outbox = [];
+        }
+
+        phoneStatus() {
+            return this.status;
+        }
+
+        turnOn() {
+            this.status = true;
+        }
+
+        turnOff() {
+            this.status = false;
+        }
+
+        drainBattery() {
+            if (this.battery > 0) {
+                this.battery--;
             } else {
-                this.battPercentage = battery;
-            }
-            this.unsendMessage = message;
-            this.onOff = onOff;
-        }
-
-        onOffStatus() {
-            return this.onOff;
-        }
-
-        turnOnOff(val) {
-            if (val === "on" || val === "On") {
-                this.onOff = 'ON';
-            } else if (val === "off" || val === "Off") {
-                this.onOff = 'OFF';
+                this.turnOff();
             }
         }
 
         createMessage(message) {
             this.battPercentage--
-            this.unsendMessage = message;
+            this.message = message;
         }
 
         phoneCharge() {
-            this.battPercentage = 100;
+            this.battPercentage += 1;
         }
 
-        receivedMessage(incomeMessage) {
-            if (this.onOff === 'ON') {
-                this.battPercentage--
-                return this.inbox.push(incomeMessage);
-            } else {
-                alert('Phone is OFF');
-            }
+        getInbox() {
+            return this.inbox;
         }
 
-        sendMessage() {
-            if (this.onOff === 'ON') {
+        sendMessage(phone) {
+            let date = new Date()
+            if (this.status) {
                 this.battPercentage--
-                return this.outbox.push(this.unsendMessage);
+                this.outbox.push(this.name + ': ' + this.message + 'time: ' + date);
+                phone.inbox.push(this.name + ': ' + this.message + 'time: ' + date);
             } else {
                 alert('Phone is OFF');
             }
@@ -72,18 +70,15 @@
     }
 
     // Khởi tạo điện thoại iPhone & Nokia
-    let iPhone = new Phone('iPhone', 100, 'From iPhone', 'ON');
-    let nokia = new Phone('Nokia', 100, 'From Nokia', 'ON');
-    // Tạo & gửi tin nhắn với iPhone tới Nokia
-    iPhone.createMessage('New Message from iPhone');
-    iPhone.sendMessage();
-    nokia.receivedMessage(iPhone.outbox);
-    // Tạo & gửi tin nhắn với Nokia tới iPhone
-    nokia.createMessage('New message from Nokia');
-    nokia.sendMessage();
-    iPhone.receivedMessage(nokia.outbox);
-    // Kiểm tra kết quả
-    console.log(iPhone, nokia);
+    let samsung = new Phone('Samsung');
+    let iPhone = new Phone('iPhone');
+    samsung.turnOn();
+    samsung.createMessage('Hello... from Samsung');
+    samsung.sendMessage(iPhone);
+    samsung.createMessage('123');
+    samsung.sendMessage(iPhone);
+
+    console.log(iPhone.getInbox())
 
 </script>
 
